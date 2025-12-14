@@ -1,3 +1,5 @@
+![Prolog Tracks Puzzle Solver](img/tracks-prolog-thumbnail.png)
+
 # Tracks Puzzle Solver in Prolog
 
 ## Overview
@@ -13,7 +15,9 @@ The Tracks puzzle is played on a rectangular grid. Each row and column has a num
 - **Track shape**: Track segments occupy whole cells and join through cell edges. Segments can be straight or corner pieces.
 - **Connectivity**: The finished track must be a single continuous path connecting the designated endpoints (no disconnected loops or multiple components).
 - **No branching**: Except for the two endpoints (which have one connecting neighbor), every track cell has exactly two track neighbors.
-- **Pre-filled / blocked cells**: Some puzzles may include cells that are pre-marked as track or as impossible; the solver respects these constraints.
+- **Pre-filled / blocked cells**: Some puzzles may include cells that are pre-marked as track; the solver respects these constraints.
+
+![Example Tracks puzzle](img/tracks-puzzle.png)
 
 This README documents the solver's representation and solving strategy; see the References section for pointers to puzzle collections and Prolog resources.
 
@@ -34,10 +38,14 @@ tracks(W, H, Hc, Hl, C)
 - **Hc, Hl**: Column and row hints  
 - **C**: List of cells, each represented by `(row, column, state)`  
 
+![Prolog puzzle Representation](img/prolog-representation.png)
+
 Cell states include:
 - Unknown
 - Impossible
 - Certain: straight segments, corners, or generic “must contain track”
+
+![Cell States](img/prolog-cell-representation.png)
 
 This representation supports partial knowledge and prevents contradictory states through Prolog's unification. If a state is logically impossible, the branch fails automatically.
 
@@ -48,6 +56,8 @@ This representation supports partial knowledge and prevents contradictory states
    - Convert Unicode input to internal atoms.
    - Handle edge cases such as trailing spaces.
 3. After solving, write the output puzzle with identical formatting.
+
+![Puzzle file format](img/puzzle-format.png)
 
 ## Core Components
 
@@ -71,6 +81,8 @@ When inference can no longer deduce new information, the solver makes a controll
 Before solving, the solver rejects boards whose row/column hints are already violated. After solving, it verifies that all hints are satisfied and no invalid configurations (e.g., loops or contradictions) remain.
 
 Double-negation patterns are used to prevent Prolog from binding uninstantiated variables incorrectly, ensuring efficient rule evaluation.
+
+![Constraint checking](img/prolog-rule-enforcing.png)
 
 ## Correctness and Results
 The solver was tested on 101 teacher-provided puzzles:
@@ -96,6 +108,8 @@ Future improvements include:
 - Optimizing cell access and caching  
 
 ## Appendix (Summary)
+
+![Inference and validation rules](img/prolog-solver-rules.png)
 
 ### Example Inference Rules
 - **AdjacencyRule**: Uncertain cells adjacent to known tracks become filled.  
