@@ -2,6 +2,9 @@
 
 # Tracks Puzzle Solver in Prolog
 
+> This is a part of a series of track solvers implemented in different programming languages for a University semester project on programming paradigms and search strategies.
+> See its [Scala counterpart here](https://github.com/vladoleksik/tracks-scala).
+
 ## Overview
 The project implements a solver for the Tracks puzzle using Prolog. The puzzle consists of a rectangular grid with numerical hints for each row and column, and the goal is to construct a continuous, non-branching rail track connecting predefined endpoints. The solver ingests puzzles from ASCII-formatted files, processes them using a logic-driven approach, and outputs completed solutions in the same format.
 
@@ -100,7 +103,7 @@ The solver is structured modularly:
 - New inference rules can be added without major restructuring.
 
 ## Reflection
-Prolog’s learning curve was steep, but once mastered, it enabled compact logic-based modeling of the Tracks puzzle. Compared to previous implementations, this solver is faster and more flexible, though its performance still depends on effective search-space restriction.
+Prolog’s learning curve was steep, but once mastered, it enabled compact logic-based modeling of the Tracks puzzle. Compared to previous implementations, this solver is faster and more flexible, though its performance still depends on effective search-space restriction. Fewer rules were formulated and applied than in the case of the [Scala solver](https://github.com/vladoleksik/tracks-scala), which did affect its performance on larger puzzles.
 
 Future improvements include:
 - Adding more targeted inference rules  
